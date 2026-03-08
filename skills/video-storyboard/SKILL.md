@@ -4,7 +4,7 @@ description: >
   专业 AI 视频分镜设计师。当用户想要创作视频、制作分镜脚本、生成 AI 视频提示词、规划视频内容结构时，必须使用此 skill。
   覆盖所有视频类型：短视频、广告片、教育内容、品牌视频、Vlog、微电影等。
   即使用户只说"帮我做个视频"或"我想拍 XX 主题的内容"，也应触发此 skill。
-  输出专业分镜设计 + 可直接用于 Sora / Kling / Runway / Veo 等主流 AI 视频工具的通用提示词。
+  输出专业分镜设计 + 可直接用于 即梦(Seedance 2.0) / Sora / Kling / Runway / Veo 等主流 AI 视频工具的提示词，其中即梦 Seedance 2.0 支持多模态 @ 引用语法专项输出。
 ---
 
 # Video Storyboard Designer
@@ -104,16 +104,66 @@ description: >
 **教育内容：** 问题引入 → 拆解步骤 → 关键洞察 → 总结强化
 **产品展示：** 使用场景 → 核心功能特写 → 差异化亮点 → 完整体验
 
-### 分镜设计要素（每个镜头必须包含）
+### 台词/旁白时长约束（先算字数，再定镜头长度）
+
+**有台词/旁白的镜头，时长不能只凭画面感觉拍脑袋定——必须先验证台词能不能念完。**
+
+#### 语速参考标准（行业实测值）
+
+**中文配音/旁白：**
+
+| 类型 | 语速（字/分钟） | 换算（字/秒） | 典型场景 |
+|------|---------------|------------|----------|
+| 广告促销 | 220–250 字/分 | 3.7–4.2 字/秒 | 抖音广告、产品硬广 |
+| 企业宣传片 | 200–220 字/分 | 3.3–3.7 字/秒 | 品牌视频、发布会 |
+| 纪录片/专题片 | 180–200 字/分 | 3.0–3.3 字/秒 | 故事型视频、人文内容 |
+| 情感/散文旁白 | 160–180 字/分 | 2.7–3.0 字/秒 | 慢节奏品牌、诗意风格 |
+
+> **实用口诀：** 中文旁白默认按 **3.5 字/秒** 估算，这是企业宣传片的通用基准。
+
+**英文配音/旁白：**
+
+| 类型 | 语速（词/分钟） | 换算（词/秒） |
+|------|---------------|------------|
+| 商业广告 | 160–180 WPM | 2.7–3.0 词/秒 |
+| 一般旁白 | 130–150 WPM | 2.2–2.5 词/秒 |
+| 纪录片叙述 | 120–140 WPM | 2.0–2.3 词/秒 |
+
+#### 镜头时长 → 台词字数容量速查表
+
+| 镜头时长 | 中文可容纳字数（3.5字/秒） | 注意事项 |
+|----------|--------------------------|----------|
+| 3 秒 | ≤ 10 字 | 只能放短句或感叹式旁白 |
+| 5 秒 | ≤ 17 字 | 一句话上限，不能太复杂 |
+| 8 秒 | ≤ 28 字 | 可以放一到两个完整短句 |
+| 10 秒 | ≤ 35 字 | 约等于两句话 |
+| 15 秒 | ≤ 52 字 | 三到四句，留好停顿 |
+| 30 秒 | ≤ 105 字 | 完整段落，注意节奏起伏 |
+
+> ⚠️ **这是上限，不是目标。** 留 20% 的喘息空间：台词实际字数建议不超过容量的 80%，剩余时间给停顿、情绪和画面呼吸。
+
+#### 台词与分镜长度的平衡规则
+
+当台词和镜头时长出现冲突时，按以下优先级处理：
+
+1. **先检查台词** — 把台词大声念一遍计时，比任何公式都准
+2. **台词超时：二选一**
+   - 砍台词：删掉修饰词，保留核心信息（「这款产品采用了最新的先进技术为您提供极致体验」→ 「这款产品用最新技术，体验极致」）
+   - 延长镜头：如果画面信息足够支撑，就延长镜头时长
+3. **台词太短：不要强行拉时长**，短台词 + 静默 + 画面呼吸，往往比硬凑字数更有力量
+4. **跨镜头台词**：一句旁白如果跨越多个镜头，要在分镜设计时标注清楚哪段台词对应哪段画面，避免剪辑时音画错位
+
+#### 分镜设计要素（每个镜头必须包含）
 
 每个镜头需设计以下内容（**写给用户看时用平白语言**，提示词用专业术语）：
 
-1. **画面内容** — 这一镜头里有什么，主体在做什么
-2. **镜头远近** — 画面有多大范围（全景/中景/近景/特写/大特写）
-3. **镜头角度** — 从哪个角度拍（平视/俯拍/仰拍/侧面）
+1. **画面内容** — 这一镜头里有什么，主体在做什么（具体，不模板化）
+2. **镜头远近** — 画面有多大范围
+3. **镜头角度** — 从哪个角度拍
 4. **镜头运动** — 镜头是否移动，怎么动
 5. **时长** — 这个镜头持续多少秒
-6. **氛围/情绪** — 这一镜头的感受是什么
+6. **台词/旁白** — 这个镜头期间说什么，字数是否在时长容量内（必填，如果无台词则写「纯画面，无旁白」）
+7. **氛围/情绪** — 这一镜头的感受是什么
 
 ### 分镜描述质量原则：去模板化
 
@@ -200,46 +250,58 @@ description: >
 
 > **Hit Point（打点）原则：** 情绪爆发的镜头切换、产品出现、标题入场，应让音乐的重拍/鼓点与之对齐，这是专业感的核心来源。
 
-### AI 配乐生成提示词结构
+### AI 配乐生成提示词结构（Suno 专项）
 
-用于 Suno / Udio / Mubert 等 AI 音乐工具：
+> 完整的 Suno 提示词指南见 `references/music-design.md` 的「Suno AI 提示词专项指南」部分。
+> 以下是生成配乐方案时的快速操作框架。
 
+**⚠️ 首要前提：Suno 无法精确控制时长**
+Suno 是生成"一首曲子"的工具，不是"生成精确N秒音乐"的工具。正确工作流是：
+**生成略长于视频的音乐 → 在剪辑软件里裁剪到精确时长**
+
+---
+
+#### Suno 两个字段：严格分离
+
+| 字段 | 填什么 |
+|------|--------|
+| **Style of Music** | 流派 + 情绪 + BPM + 乐器 + 排除项（名词形容词，无动词命令） |
+| **Lyrics** | `[结构标记]` + 可选小节数（如 `[Verse 8]`）+ 歌词（无人声时留结构标记即可） |
+
+**必填排除项：** `instrumental only` 或 `no vocals`（否则 Suno 默认加人声）
+
+---
+
+#### 视频配乐提示词速写模板
+
+**≤60秒视频（直接生成，后期裁剪）：**
 ```
-[情绪/氛围词] [风格/流派] instrumental, [BPM 描述], 
-[乐器组合], [动态描述], [用途场景], no vocals
+Style: warm cinematic indie, 80 BPM, acoustic guitar and cello,
+       sparse intro builds to full arrangement, 
+       no vocals, instrumental only
+
+Lyrics:
+[Instrumental Intro]
+[Verse]
+[Build]
+[Chorus]
+[Fade Out]
 ```
 
-**示例集：**
-
+**需要控制段落比例时，加小节数（估算：小节数 × 4 ÷ BPM × 60 = 秒数）：**
 ```
-// 教育类视频
-Uplifting curious modern instrumental, medium tempo around 100 BPM, 
-piano melody with light electronic accents and subtle strings, 
-builds gradually with energy, educational explainer video background, no vocals
+Lyrics:
+[Intro 4]        ← 120BPM ≈ 8秒
+[Verse 8]        ← 120BPM ≈ 16秒
+[Chorus 8]       ← 120BPM ≈ 16秒
+[Outro 4]        ← 120BPM ≈ 8秒
+```
+小节数是建议值，AI 有 ±20% 偏差，最终仍需裁剪。
 
-// 科技产品发布
-Sleek futuristic synthwave instrumental, driving 120 BPM, 
-pulsing synthesizer bass with crisp electronic drums, 
-clean and precise with cinematic swell at 0:30 mark, 
-tech product reveal video, no vocals
-
-// 情感品牌故事
-Warm emotional cinematic indie, slow 72 BPM, 
-fingerpicked acoustic guitar with cello underneath, 
-builds from minimal to full arrangement, 
-melancholic hopeful tone, brand storytelling video, no vocals
-
-// 商业广告（30秒）
-Energetic upbeat corporate pop, 125 BPM, 
-punchy drums with bright piano and electric guitar, 
-high energy throughout with a dynamic drop at 15 seconds, 
-advertising commercial background music, no vocals
-
-// 旅行探索
-Epic orchestral adventure, moderate 95 BPM, 
-full strings with French horn and world percussion, 
-sweeping and majestic with natural sound texture, 
-travel documentary cinematic, no vocals
+**>60秒视频（推荐用 Extend 续生，保持调性一致）：**
+```
+先生成基础段 → 点 Extend 按钮续生 → Get Whole Song 下载完整版 → 剪辑软件裁剪
+不推荐分段生成再拼接（调性容易漂移）
 ```
 
 ### 配乐方案输出格式
@@ -284,12 +346,15 @@ travel documentary cinematic, no vocals
 - 总镜头数：XX 镜 / 平均镜头时长：X 秒
 - 整体视觉风格：[用一句话描述视觉氛围]
 - 配乐方向：[风格 + BPM 区间]
+- 旁白字数预算：总时长 XX秒 × 3.5字/秒 × 80% ≈ 上限 XX字（留20%呼吸空间）
 
 ---
 
 ### SHOT 01 — [镜头标题]
 **时长：** 3-4 秒
 **画面：** [具体到这个视频独有的画面，不是任何视频都能套的通用描述]
+**台词/旁白：** 「[台词内容，XX字]」 / 纯画面，无旁白
+**字数校验：** XX字 ÷ 3.5字/秒 ≈ 需X秒 ✓合适 / ⚠️超时→已删减至XX字 或 →镜头延长至X秒
 **情绪：** [这一镜头想传递什么感受]
 **配乐状态：** [此镜头音乐处于什么状态]
 
@@ -313,7 +378,9 @@ travel documentary cinematic, no vocals
 - 人工拍摄指导侧重「怎么拍出这个结果」——真实导演/摄影师需要知道操作步骤
 - 两者描述的是同一个镜头，但角度完全不同，不要互相复制
 
-### AI 视频提示词结构（通用格式）
+### AI 视频提示词结构
+
+#### 通用格式（Sora / Kling / Runway / Veo）
 
 ```
 [Shot type] of [subject + action], [camera movement], [lighting condition], 
@@ -329,6 +396,47 @@ lighting mixed with warm ambient glow, clean white and blue color palette,
 shallow depth of field with bokeh background elements, normal speed, 
 modern educational aesthetic, 4K, cinematic color grading
 ```
+
+---
+
+#### 即梦 Seedance 2.0 专项格式
+
+**核心差异：** Seedance 2.0 支持多模态输入，用 `@素材名` 直接引用参考素材，不再依赖文字堆砌专业术语。中文提示词原生支持，效果比英文翻译更好。
+
+> ⚠️ **重要限制：** Seedance **不支持负面提示词**，别写"不要什么"，用正向描述代替。
+
+**提示词公式（中文）：**
+```
+[主体 + 动作] + [场景/环境] + [光影] + [镜头语言] + [风格/质感] + [画质约束]
+```
+
+**三种使用方式：**
+
+**① 纯文字生成（无参考素材）**
+```
+一位穿白色亚麻衬衫的男性独立开发者，坐在昏暗咖啡馆角落，
+盯着 MacBook 屏幕上刚出现的成功提示，嘴角微微上扬，
+窗外夜晚霓虹灯透入，冷暖光交叠，近景，镜头缓慢推进，
+画面稳定无抖动，面部清晰不变形，电影感，4K 高清。
+```
+
+**② 上传素材 + @ 引用（Seedance 最强用法）**
+```
+参考 @视频1 的运镜轨迹和节奏，
+将 @图片1 中的产品放置在同样的场景里，
+背景换成极简白色工作台，冷白光从正上方打下，
+镜头缓慢环绕产品一圈，强调工艺细节，
+画面稳定，细节清晰，苹果发布会产品级质感。
+```
+
+**③ 视频延长（接续已有镜头）**
+```
+将 @视频1 延长 10s，画面继续展示产品侧面，
+镜头从侧面缓慢移向背面，光影保持与前段完全一致，
+动作连贯流畅，无跳帧，与前段自然衔接。
+```
+
+> 完整的 Seedance 2.0 使用指南（@语法、多模态组合、长视频工作流、排查表）见 `references/seedance-jimeng.md`
 
 ---
 
@@ -369,5 +477,6 @@ modern educational aesthetic, 4K, cinematic color grading
 ## 参考文件
 
 - `references/shot-types.md` — 完整镜头类型库 + 提示词范例
-- `references/music-design.md` — ASL/BPM 速查、流派×用途映射、平台适配、音乐动态设计
-- `references/prompt-examples.md` — 按行业分类的视频提示词范例集
+- `references/music-design.md` — ASL/BPM 速查、流派×用途映射、Suno AI 提示词专项指南
+- `references/prompt-examples.md` — 按行业分类的视频提示词范例集（通用 AI 视频工具）
+- `references/seedance-jimeng.md` — 即梦 Seedance 2.0 完整指南：多模态 @ 引用、提示词公式、场景模板、长视频工作流
